@@ -1,0 +1,46 @@
+gcc cross compiler
+    build gcc native compiler for target
+    	  requires target libc and headers
+    libgcc
+	when building libgcc for target, r
+
+
+
+gcc package
+    subpackages
+	libgcc "gcc"
+	libstdc++
+	libffi
+	zlib
+	boehm-gc
+	ada
+	libada
+	libjava
+	libgo
+	libobjc
+	libiberty
+		does not supprt being a shared library
+	
+
+
+../gcc-5.5.0/configure --build=$LINUX_BUILD\
+		       --host=$LINUX_HOST\
+		       --target=$LINUX_TARGET\
+		       --prefix=$LINUX_TOOLS/gcc\
+		       --with-local-prefix=$LINUX_TOOLS/gcc/local-prefix\
+		       --enable-languages=c\
+		       --without-headers\
+		       --with-newlib\
+		       --disable-multilib\ # Don't need to make 32 bit code
+		       --disable-shared\ # We can use this systems dynamic linker for libs
+		       --disable-threads\         #
+		       --disable-decimal-float\   #
+		       --disable-libatomic\       #
+		       --disable-libgomp\         #
+		       --disable-libmpx\          #
+		       --disable-libquadmath\     #
+		       --disable-libssp\          #
+		       --disable-libvtv\          #
+		       --disable-libstdcxx\       # 
+		       --disable-libada\ # Don't need ada language
+		       --disable-nls # Don't need language stuff

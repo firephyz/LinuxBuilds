@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Unpacking source files."
+TAR_FILES=`ls $LINUX_SOURCES -1`
+for f in $TAR_FILES; do
+    echo "Unpacking $f..."
+    tar -xf $LINUX_SOURCES/$f
+done
